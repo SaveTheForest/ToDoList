@@ -1,28 +1,32 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { checKCircle, editIcon, trashIcon, unChecked } from "../assets/icons";
 
-export default function Task({ data, deleteTask }) {
-  const [checked, setChecked] = useState(data.status);
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => setChecked(!checked)}>
-        {checked ? checKCircle : unChecked}
-      </TouchableOpacity>
+export default function Task({ data, deleteTask, updateTask, editTask }) {
+  const status = { status: !data.status, id: data.id };
 
+  return (
+    <View style={[styles.container, { opacity: data.status ? 0.5 : 1 }]}>
+      <TouchableOpacity onPress={() => updateTask(status)}>
+        {data.status ? checKCircle : unChecked}
+      </TouchableOpacity>
       <View style={styles.internalContainer}>
         <View style={{ flex: 1 }}>
           <Text
             style={[
               styles.text,
-              { textDecorationLine: checked ? "line-through" : "none" },
+              { textDecorationLine: data.status ? "line-through" : "none" },
             ]}
           >
             {data.text}
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-          <TouchableOpacity>{editIcon}</TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => editTask({ id: data.id, text: data.text })}
+          >
+            {editIcon}
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => deleteTask(data.id)}>
             {trashIcon}
           </TouchableOpacity>
