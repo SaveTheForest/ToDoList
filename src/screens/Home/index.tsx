@@ -6,7 +6,19 @@ import {
   FlatList,
   Modal,
   ToastAndroid,
+  ActivityIndicator,
 } from "react-native";
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from "react-native-indicators";
 import React, { useLayoutEffect, useState } from "react";
 import { addMore, dotsMenu } from "../../assets/icons";
 import Task from "../../components/task";
@@ -111,7 +123,10 @@ export default function Home({ navigation }) {
       <View style={styles.headerContainer}>
         <Text style={styles.helloText}>
           Hello,
-          <Text style={styles.userNameText}> {name}</Text>
+          <Text style={styles.userNameText}>
+            {" "}
+            {name === "" ? <DotIndicator color="#DDD" size={7} /> : name}
+          </Text>
         </Text>
         <TouchableOpacity>{dotsMenu}</TouchableOpacity>
       </View>
@@ -142,7 +157,6 @@ export default function Home({ navigation }) {
       >
         {addMore}
       </TouchableOpacity>
-
       <Modal
         visible={visibleModal}
         transparent={true}

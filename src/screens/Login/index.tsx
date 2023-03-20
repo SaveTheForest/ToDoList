@@ -12,7 +12,7 @@ import { TextInput } from "react-native-paper";
 import ConfirmButton from "../../components/confirmButton";
 import auth from "@react-native-firebase/auth";
 export default function Login({ navigation }) {
-  const [secure, setSecure] = useState(false);
+  const [secure, setSecure] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(true);
@@ -59,6 +59,7 @@ export default function Login({ navigation }) {
 
       <Text style={styles.TitleScreen}>Login</Text>
       <TextInput
+        outlineColor={"#929292"}
         activeOutlineColor={"#AA85FF"}
         style={styles.input}
         textColor={"#FFF"}
@@ -69,6 +70,7 @@ export default function Login({ navigation }) {
         onChangeText={(text) => setEmail(text)}
       />
       <TextInput
+        outlineColor={"#929292"}
         activeOutlineColor={"#AA85FF"}
         style={styles.input}
         textColor={"#DDD"}

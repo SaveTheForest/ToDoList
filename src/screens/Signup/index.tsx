@@ -68,6 +68,7 @@ export default function Signup({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.TitleScreen}>Signup</Text>
       <TextInput
+        outlineColor={"#929292"}
         activeOutlineColor={"#AA85FF"}
         style={styles.input}
         textColor={"#FFF"}
@@ -78,6 +79,7 @@ export default function Signup({ navigation }) {
         onChangeText={(text) => setName(text)}
       />
       <TextInput
+        outlineColor={"#929292"}
         activeOutlineColor={"#AA85FF"}
         style={styles.input}
         textColor={"#FFF"}
@@ -88,6 +90,7 @@ export default function Signup({ navigation }) {
         onChangeText={(text) => setEmail(text)}
       />
       <TextInput
+        outlineColor={"#929292"}
         activeOutlineColor={"#AA85FF"}
         style={styles.input}
         textColor={"#DDD"}

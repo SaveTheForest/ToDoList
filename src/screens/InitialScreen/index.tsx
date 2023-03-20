@@ -28,8 +28,8 @@ export default function Initial({ navigation }) {
         source={require("../../assets/animations/9177-taskman.json")}
       />
       <Text style={styles.text}>
-        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-        Lorem Ipsum Lorem
+        Save the tasks here so you don't forget and blablablablablablabla
+        blablablabla
       </Text>
       <View style={styles.space} />
       <ConfirmButton
