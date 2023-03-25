@@ -20,6 +20,14 @@ export default function Task({ data, deleteTask, updateTask, editTask }) {
           >
             {data.text}
           </Text>
+          <Text
+            style={[
+              styles.dateText,
+              { textDecorationLine: data.status ? "line-through" : "none" },
+            ]}
+          >
+            {data.timestamp}
+          </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
           <TouchableOpacity
@@ -40,14 +48,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#755EA9",
     flexDirection: "row",
     alignItems: "center",
-    height: 46,
+    height: 62,
     width: "98%",
     borderRadius: 8,
+
     paddingHorizontal: 10,
   },
   text: {
     fontSize: 16,
     color: "#DDD",
+    marginLeft: 10,
+  },
+  dateText: {
+    fontSize: 13,
+    color: "#d4d2d2",
     marginLeft: 10,
   },
   internalContainer: {

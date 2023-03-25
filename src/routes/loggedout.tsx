@@ -5,7 +5,7 @@ import Login from "../screens/Login";
 import Signup from "../screens/Signup";
 import Initial from "../screens/InitialScreen";
 import Home from "../screens/Home";
-export default function LoggedoutRoute() {
+export default function LoggedoutRoute({ initialRoute }) {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
@@ -13,7 +13,7 @@ export default function LoggedoutRoute() {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Initial"
+        initialRouteName={initialRoute}
       >
         <Stack.Screen name="Initial" component={Initial} />
         <Stack.Screen name="Login" component={Login} />

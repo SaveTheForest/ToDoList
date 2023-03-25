@@ -6,21 +6,10 @@ import {
   FlatList,
   Modal,
   ToastAndroid,
-  ActivityIndicator,
 } from "react-native";
-import {
-  BallIndicator,
-  BarIndicator,
-  DotIndicator,
-  MaterialIndicator,
-  PacmanIndicator,
-  PulseIndicator,
-  SkypeIndicator,
-  UIActivityIndicator,
-  WaveIndicator,
-} from "react-native-indicators";
+import { DotIndicator } from "react-native-indicators";
 import React, { useLayoutEffect, useState } from "react";
-import { addMore, dotsMenu } from "../../assets/icons";
+import { addMore, logoutIcon } from "../../assets/icons";
 import Task from "../../components/task";
 import firestore from "@react-native-firebase/firestore";
 import auth from "@react-native-firebase/auth";
@@ -38,7 +27,11 @@ export default function Home({ navigation }) {
   const [visibleModal, setVisibleModal] = useState(false);
   const [changeFunction, setChangeFunction] = useState(0);
   const email = auth().currentUser.email;
-
+  const logout = () => {
+    auth()
+      .signOut()
+      .then(() => navigation.navigate("Initial"));
+  };
   const previousEditTask = async (data) => {
     try {
       await AsyncStorage.setItem("@storage_Key", data.id);
@@ -94,7 +87,7 @@ export default function Home({ navigation }) {
         id: id,
         text: task,
         status: false,
-        timestamp: new Date(),
+        timestamp: new Date().toLocaleDateString(),
       })
       .then(() => dataUser())
       .then(() => setVisibleModal(false));
@@ -128,7 +121,9 @@ export default function Home({ navigation }) {
             {name === "" ? <DotIndicator color="#DDD" size={7} /> : name}
           </Text>
         </Text>
-        <TouchableOpacity>{dotsMenu}</TouchableOpacity>
+        <TouchableOpacity onPress={() => logout()}>
+          {logoutIcon}
+        </TouchableOpacity>
       </View>
       <FlatList
         data={tasks}
@@ -190,6 +185,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     width: "100%",
+    alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
     paddingBottom: 25,
