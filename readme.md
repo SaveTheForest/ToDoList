@@ -26,8 +26,7 @@ O projeto foi feito utilizando das seguintes tecnologias
 
 - Expo
 - React Native
-- Styled-Components
-- EXPO CAM
+- Firebase
 - Async Storage
 
 ## Download
