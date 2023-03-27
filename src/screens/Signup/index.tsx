@@ -25,7 +25,7 @@ export default function Signup({ navigation }) {
       auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() =>
-          firestore().collection("users").doc(email).set({
+          firestore().collection("users").doc(email.toLowerCase()).set({
             name: name,
           })
         )

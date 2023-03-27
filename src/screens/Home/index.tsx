@@ -8,7 +8,7 @@ import {
   ToastAndroid,
 } from "react-native";
 import { DotIndicator } from "react-native-indicators";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { addMore, logoutIcon } from "../../assets/icons";
 import Task from "../../components/task";
 import firestore from "@react-native-firebase/firestore";
@@ -16,6 +16,7 @@ import auth from "@react-native-firebase/auth";
 import AddTask from "../../components/addTask";
 import uuid from "react-native-uuid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 type StatusType = {
   status: boolean;
   id: string;
@@ -27,6 +28,7 @@ export default function Home({ navigation }) {
   const [visibleModal, setVisibleModal] = useState(false);
   const [changeFunction, setChangeFunction] = useState(0);
   const email = auth().currentUser.email;
+
   const logout = () => {
     auth()
       .signOut()
@@ -87,7 +89,7 @@ export default function Home({ navigation }) {
         id: id,
         text: task,
         status: false,
-        timestamp: new Date().toLocaleDateString(),
+        timestamp: new Date().toLocaleString(),
       })
       .then(() => dataUser())
       .then(() => setVisibleModal(false));
@@ -106,8 +108,7 @@ export default function Home({ navigation }) {
     setTask(previousTask);
     setNome(data.data().name);
   };
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     dataUser();
   }, []);
 
