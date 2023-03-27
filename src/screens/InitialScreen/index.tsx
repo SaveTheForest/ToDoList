@@ -28,8 +28,7 @@ export default function Initial({ navigation }) {
         source={require("../../assets/animations/9177-taskman.json")}
       />
       <Text style={styles.text}>
-        Save the tasks here so you don't forget and blablablablablablabla
-        blablablabla
+        Save your tasks so you don't forget them online
       </Text>
       <View style={styles.space} />
       <ConfirmButton
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
   text: {
     alignSelf: "center",
     color: "#DDD",
-    fontSize: 15,
+    fontSize: 18,
     textAlign: "center",
   },
 });
