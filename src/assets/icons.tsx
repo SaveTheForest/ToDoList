@@ -1,4 +1,10 @@
-import { Ionicons, Entypo, AntDesign, Feather } from "@expo/vector-icons";
+import {
+  Ionicons,
+  Entypo,
+  AntDesign,
+  Feather,
+  FontAwesome5,
+} from "@expo/vector-icons";
 
 export const backScreenIcon = (
   <Ionicons name="chevron-back" size={32} color="#DDD" />
@@ -17,3 +23,5 @@ export const trashIcon = <Feather name="trash" size={24} color="#DDD" />;
 export const editIcon = <Feather name="edit-3" size={24} color="#DDD" />;
 
 export const logoutIcon = <AntDesign name="logout" size={24} color="#DDD" />;
+
+export const taskIcon = <FontAwesome5 name="tasks" size={128} color="#DDD" />;

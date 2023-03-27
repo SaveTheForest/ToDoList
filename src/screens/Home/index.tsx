@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { DotIndicator } from "react-native-indicators";
 import React, { useEffect, useState } from "react";
-import { addMore, logoutIcon } from "../../assets/icons";
+import { addMore, logoutIcon, taskIcon } from "../../assets/icons";
 import Task from "../../components/task";
 import firestore from "@react-native-firebase/firestore";
 import auth from "@react-native-firebase/auth";
@@ -126,25 +126,33 @@ export default function Home({ navigation }) {
           {logoutIcon}
         </TouchableOpacity>
       </View>
-      <FlatList
-        data={tasks}
-        renderItem={({ item }) => (
-          <Task
-            data={item}
-            deleteTask={(text: string) => handleDeleteTask(text)}
-            updateTask={(status: StatusType) => handleUpdateStatusTask(status)}
-            editTask={(data) => previousEditTask(data)}
-          />
-        )}
-        ItemSeparatorComponent={() => (
-          <View
-            style={{
-              height: 10,
-            }}
-          />
-        )}
-      />
-
+      {tasks.length == 0 ? (
+        <View style={styles.emptyContainer}>
+          {taskIcon}
+          <Text style={styles.textEmptyContainer}>Your Tasks will be here</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={tasks}
+          renderItem={({ item }) => (
+            <Task
+              data={item}
+              deleteTask={(text: string) => handleDeleteTask(text)}
+              updateTask={(status: StatusType) =>
+                handleUpdateStatusTask(status)
+              }
+              editTask={(data) => previousEditTask(data)}
+            />
+          )}
+          ItemSeparatorComponent={() => (
+            <View
+              style={{
+                height: 10,
+              }}
+            />
+          )}
+        />
+      )}
       <TouchableOpacity
         onPress={() => {
           setVisibleModal(true), setChangeFunction(1);
@@ -193,5 +201,15 @@ const styles = StyleSheet.create({
   },
   addTaskButton: {
     alignSelf: "flex-end",
+  },
+  emptyContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 15,
+  },
+  textEmptyContainer: {
+    color: "#DDD",
+    fontSize: 22,
   },
 });
